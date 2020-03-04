@@ -4,15 +4,16 @@ module.exports = (app, db) => {
   });
 
   app.post('/product', (req, res) => {
-    const { name, image, description } = req.body;
-    console.log({ name, image, description });
+    const { name, description } = req.body;
+    const { image } = req.files;
+    const imagePath = `/assets/products/${image.name}`
 
-    console.log(req);
+    image.mv(`./public/assets/products/${image.name}`);
 
-    // db.Product.create({
-    //   name: req.body.name,
-    //   image: req.body.image,
-    //   description: req.body.description
-    // }).then( (result) => res.json(result) )
+    db.Product.create({
+      name: name,
+      image: imagePath,
+      description: description
+    }).then( (result) => res.json(result) )
   });
 }
