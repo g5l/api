@@ -15,7 +15,7 @@ module.exports = (app, db) => {
       );
     }
 
-    const user =  await db.User.findOne({ where: { email } });
+    const user = await db.User.findOne({ where: { email } });
 
     if (!user) {
       res.status(401).json({ msg: 'No such user found', user });
