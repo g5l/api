@@ -8,8 +8,9 @@ const passport = require('passport');
 const passportJWT = require('passport-jwt');
 const db = require("./models");
 
-const apiProduct = require("./api/product");
 const apiUser = require("./api/user");
+const apiProduct = require("./api/product");
+const apiNotice = require("./api/notice");
 
 let ExtractJwt = passportJWT.ExtractJwt;
 let JwtStrategy = passportJWT.Strategy;
@@ -52,6 +53,7 @@ app.use((req, res, next) => {
 
 apiProduct(app, db);
 apiUser(app, db);
+apiNotice(app, db);
 
 const port = process.env.PORT || 3000;
 app.listen(port);

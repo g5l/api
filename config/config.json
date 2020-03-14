@@ -6,7 +6,9 @@
     "host": "127.0.0.1",
     "dialect": "mysql",
     "define": {
+      "paranoid":false,
       "timestamps": true,
+      "freezeTableName": false,
       "underscored": true
     }
   },

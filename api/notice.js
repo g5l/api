@@ -4,17 +4,24 @@ module.exports = (app, db) => {
       .then( (result) => res.json(result) )
   });
 
+  app.get('/categories', (req, res) => {
+    db.NoticeCategory.findAll()
+      .then( (result) => res.json(result) )
+  });
+
   app.post('/notice', (req, res) => {
-    const { title, article, date, categoryId } = req.body;
+    const { title, article, noticeCategoryId, source } = req.body;
     const { image } = req.files;
-    const imagePath = `/assets/products/${image.name}`
+    const imagePath = `/assets/blog/${image.name}`;
 
-    image.mv(`./public/assets/products/${image.name}`);
+    image.mv(`./public/assets/blog/${image.name}`);
 
-    db.Product.create({
-      name: name,
+    db.Notice.create({
+      title: title,
       image: imagePath,
-      description: description
+      article: article,
+      notice_category_id: noticeCategoryId,
+      source: source
     }).then( (result) => res.json(result) )
   });
 }

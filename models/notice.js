@@ -4,8 +4,11 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     image: DataTypes.STRING,
     article: DataTypes.TEXT,
-    date: DataTypes.DATE,
-    categoryId: DataTypes.INTEGER,
+    notice_category_id: {
+      type: DataTypes.INTEGER,
+      references: 'notice_categories',
+      referencesKey: 'id'
+    },
     source: DataTypes.STRING,
     status: DataTypes.STRING,
   }, {
